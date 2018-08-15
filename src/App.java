@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 //import java.util.ArrayList;
 //import java.util.List;
 //
+import javafx.*;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -125,32 +126,44 @@ public class App extends Application {
 		// grid.add(cb3, 0, 9);
 		// grid.add(cb4, 0, 10);
 		// grid.add(cb5, 0, 11);
-		
+
 		Label Instruments = new Label("Instrument Type:");
 		grid.add(Instruments, 0, 7);
-		
+
 		final ToggleGroup tg = new ToggleGroup();
 		RadioButton r1 = new RadioButton("Piano");
+		r1.setUserData("Piano");
 		r1.setToggleGroup(tg);
+
 		RadioButton r2 = new RadioButton("Guitar");
+		r2.setUserData("Guitar");
 		r2.setToggleGroup(tg);
+
 		RadioButton r3 = new RadioButton("Drums");
+		r3.setUserData("Drums");
 		r3.setToggleGroup(tg);
+
 		RadioButton r4 = new RadioButton("Bass guitar");
+		r4.setUserData("Bass guitar");
 		r4.setToggleGroup(tg);
+
 		RadioButton r5 = new RadioButton("Vocal");
+		r5.setUserData("Vocal");
 		r5.setToggleGroup(tg);
 		VBox box = new VBox(20, r1, r2, r3, r4, r5);
 
 		grid.add(box, 0, 8);
-
-		tg.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-			public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
-				if (tg.getSelectedToggle() != null) {
-					System.out.println(tg.getSelectedToggle().getUserData().toString());
-				}
-			}
-		});
+		RadioButton selectedRadioButton = (RadioButton) tg.getSelectedToggle();
+		// String temp = (String) tg.getSelectedToggle().getUserData();
+		// tg.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+		// public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle,
+		// Toggle new_toggle) {
+		// if (tg.getSelectedToggle() != null) {
+		// final String temp = (String) tg.getSelectedToggle().getUserData();
+		// }
+		// }
+		// });
+		System.out.print(selectedRadioButton);
 
 		Slider slider = new Slider();
 		slider.setMin(0);
@@ -203,8 +216,20 @@ public class App extends Application {
 		btn2.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				actiontarget.setText("Submitted!");
-				//switch(case)
-				//Person newPerson = System.out.println(fn.getText() + " " + userTextField2.getText());
+				RadioButton selectedRadioButton = (RadioButton) tg.getSelectedToggle();
+//				switch (selectedRadioButton) {
+//				case "Piano":
+//					System.out.println("PIANO SELECTED");
+//					break;
+//				case "Guitar":
+//					System.out.println("PIANO SELECTED");
+//					break;
+//
+//				}
+
+				// }
+				// Person newPerson = System.out.println(fn.getText() + " " +
+				// userTextField2.getText());
 
 			}
 		});
